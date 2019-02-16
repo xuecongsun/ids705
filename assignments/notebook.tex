@@ -1,0 +1,1115 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Assignment 1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Assignment 1 - Probability, Linear Algebra, Programming, and
+Git}\label{assignment-1---probability-linear-algebra-programming-and-git}
+
+\subsection{\texorpdfstring{\emph{Emma Sun
+Xuecong}}{Emma Sun Xuecong}}\label{emma-sun-xuecong}
+
+Netid: \emph{xs58}
+
+    \section{Probability and Statistics
+Theory}\label{probability-and-statistics-theory}
+
+    \subsection{1}\label{section}
+
+Let
+\(f(x) = \begin{cases}  0 & x < 0 \\  \alpha x^2 & 0 \leq x \leq 2 \\  0 & 2 < x  \end{cases}\)
+
+For what value of \(\alpha\) is \(f(x)\) a valid probability density
+function?
+
+\emph{Note: for all assignments, write out all equations and math for
+all assignments using markdown and
+\href{https://tobi.oetiker.ch/lshort/lshort.pdf}{LaTeX} and show all
+work}
+
+    \textbf{ANSWER}
+
+    For \(f(x)\) to be a valid probability density function, it has to
+satisfy the condition that: \[\int_{-\infty}^{\infty} f(x) dx\]
+
+Therefore, in this case,
+
+\[
+\begin{align}
+\int_{0}^{2} \alpha x^2 dx=1 \\
+(\frac{1}{3}\alpha x^3)_{0}^{2}=1 \\
+\frac{8}{3}\alpha=1\\
+\alpha=\frac{3}{8}
+\end{align}
+\]
+
+    \subsection{2}\label{section}
+
+What is the cumulative distribution function (CDF) that corresponds to
+the following probability distribution function? Please state the value
+of the CDF for all possible values of \(x\).
+
+\(f(x) = \begin{cases}  \frac{1}{3} & 0 < x < 3 \\  0 & \text{otherwise}  \end{cases}\)
+
+    \textbf{ANSWER}
+
+    \(P(x)=\int_{-\infty}^{x} f(x) dx  = \begin{cases}  0 & x<0 \\  \frac{x}{3} & 0 < x < 3 \\  1 & x \geq 3  \end{cases}\)
+
+    \subsection{3}\label{section}
+
+For the probability distribution function for the random variable \(X\),
+
+\(f(x) = \begin{cases}  \frac{1}{3} & 0 < x < 3 \\  0 & \text{otherwise}  \end{cases}\)
+
+what is the (a) expected value and (b) variance of \(X\). \emph{Show all
+work}.
+
+    \textbf{ANSWER}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Expected value:
+\item
+  Variance:
+\end{enumerate}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Expected Value:
+\end{enumerate}
+
+\[
+\begin{align}
+E(X)&= \int_{0}^{3} x f(x) dx \\
+    &=\int_{0}^{3} x \frac{1}{3} dx \\ 
+    &=(\frac{1}{6} x^2)_{0}^{3}\\
+    &=\frac{3}{2}
+\end{align}
+\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Variance:
+\end{enumerate}
+
+\[
+\begin{align}
+Var(X)&=E[X^2]-E[X]^2 \\
+      &=\int_{0}^{3} x^2 f(x) dx - (\frac{3}{2})^2\\
+      &=\int_{0}^{3} x^2 \frac{1}{3} dx - (\frac{3}{2})^2\\
+      &=(\frac{1}{9} x^3)_{0}^{3}- (\frac{3}{2})^2\\
+      &=3-\frac{9}{4}\\
+      &=\frac{3}{4}
+\end{align}
+\]
+
+    \subsection{4}\label{section}
+
+Consider the following table of data that provides the values of a
+discrete data vector \(\mathbf{x}\) of samples from the random variable
+\(X\), where each entry in \(\mathbf{x}\) is given as \(x_i\).
+
+\emph{Table 1. Dataset N=5 observations}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+& \(x_0\) & \(x_1\) & \(x_2\) & \(x_3\) & \(x_4\)\tabularnewline
+\midrule
+\endhead
+\(\textbf{x}\) & 2 & 3 & 10 & -1 & -1\tabularnewline
+\bottomrule
+\end{longtable}
+
+What is the (a) mean, (b) variance, and the of the data?
+
+\emph{Show all work. Your answer should include the definition of mean,
+median, and variance in the context of discrete data.}
+
+    \textbf{ANSWER}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Mean
+\item
+  Variance
+\end{enumerate}
+
+    (a)Mean \[
+\begin{align}
+E[X] &= \frac{1}{N}\sum_{1}^{N}x_{i} \\
+     &=\frac{1}{5}(2+3+10-1-1) \\
+     &=\frac{13}{5}
+\end{align}
+\]
+
+(b)Variance
+
+Denote mean using \(\mu\)
+
+\[
+\begin{align}
+Var[X] &= \frac{1}{N}\sum_{1}^{n}(x_{i}-\mu)^2 \\
+       &= \frac{1}{5}((\frac{13}{5}-2)^2+(\frac{13}{5}-3)^2+(\frac{13}{5}-10)^2+(\frac{13}{5}-(-1))^2+(-1-\frac{13}{5})^2) \\
+       &=16.24
+\end{align}
+\]
+
+    \subsection{5}\label{section}
+
+Review of counting from probability theory.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  How many different 7-place license plates are possible if the first 3
+  places only contain letters and the last 4 only contain numbers?
+\item
+  How many different batting orders are possible for a baseball team
+  with 9 players?
+\item
+  How many batting orders of 5 players are possible for a team with 9
+  players total?
+\item
+  Let's assume this class has 26 students and we want to form project
+  teams. How many unique teams of 3 are possible?
+\end{enumerate}
+
+\emph{Hint: For each problem, determine if order matters, and if it
+should be calculated with or without replacement.}
+
+    \textbf{ANSWER}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \(26\times26\times26\times10\times10\times10\times10=175760000\)
+\item
+  \(9!=362880\)
+\item
+  \(9\times8\times7\times6\times5=15120\)
+\item
+  \$\{\{26\}\choose{3}\}= \frac{26!}{23!3!} = 2600 \$
+\end{enumerate}
+
+    \section{Linear Algebra}\label{linear-algebra}
+
+    \subsection{6}\label{section}
+
+\textbf{Matrix manipulations and multiplication}. Machine learning
+involves working with many matrices, so this exercise will provide you
+with the opportunity to practice those skills.
+
+Let
+\(\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}\),
+\(\mathbf{b} = \begin{bmatrix} -1 \\ 3 \\ 8 \end{bmatrix}\),
+\(\mathbf{c} = \begin{bmatrix} 4 \\ -3 \\ 6 \end{bmatrix}\), and
+\(\mathbf{I} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}\)
+
+Compute the following or indicate that it cannot be computed:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mathbf{A}\mathbf{A}\)
+\item
+  \(\mathbf{A}\mathbf{A}^T\)
+\item
+  \(\mathbf{A}\mathbf{b}\)
+\item
+  \(\mathbf{A}\mathbf{b}^T\)
+\item
+  \(\mathbf{b}\mathbf{A}\)
+\item
+  \(\mathbf{b}^T\mathbf{A}\)
+\item
+  \(\mathbf{b}\mathbf{b}\)
+\item
+  \(\mathbf{b}^T\mathbf{b}\)
+\item
+  \(\mathbf{b}\mathbf{b}^T\)
+\item
+  \(\mathbf{b} + \mathbf{c}^T\)
+\item
+  \(\mathbf{b}^T\mathbf{b}^T\)
+\item
+  \(\mathbf{A}^{-1}\mathbf{b}\)
+\item
+  \(\mathbf{A}\circ\mathbf{A}\)
+\item
+  \(\mathbf{b}\circ\mathbf{c}\)
+\end{enumerate}
+
+\emph{Note: The element-wise (or Hadamard) product is the product of
+each element in one matrix with the corresponding element in another
+matrix, and is represented by the symbol "\(\circ\)".}
+
+    \textbf{ANSWER}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{n}{A}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+         \PY{n}{b}\PY{o}{=}\PY{n}{b}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{c}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+         \PY{n}{c}\PY{o}{=}\PY{n}{c}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{c}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}1}
+         \PY{n}{answer1}\PY{o}{=}\PY{n}{A}\PY{n+nd}{@A}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 1 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer1}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}2}
+         \PY{n}{answer2}\PY{o}{=}\PY{n}{A}\PY{n+nd}{@A}\PY{o}{.}\PY{n}{T}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 2 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer2}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}3}
+         \PY{n}{answer3}\PY{o}{=}\PY{n}{A}\PY{n+nd}{@b}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 3 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer3}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}4}
+         \PY{c+c1}{\PYZsh{}can\PYZsq{}t be computed as A\PYZsq{}s dimension is 3*3 whereas b transpose is 1*3, so they can\PYZsq{}t be multiplied together}
+         
+         \PY{c+c1}{\PYZsh{}5}
+         \PY{c+c1}{\PYZsh{}can\PYZsq{}t be computed as b\PYZsq{}s dimension is 3*1 whereas A\PYZsq{}s dimension is 3*3, so they can\PYZsq{}t be multiplied together}
+         
+         \PY{c+c1}{\PYZsh{}6}
+         \PY{n}{answer6}\PY{o}{=}\PY{n}{b}\PY{o}{.}\PY{n}{T}\PY{n+nd}{@A}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 6 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer6}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}7}
+         \PY{c+c1}{\PYZsh{}can\PYZsq{}t be computed as b\PYZsq{}s dimension is 3*1, they can\PYZsq{}t be multiplied together}
+         
+         \PY{c+c1}{\PYZsh{}8}
+         \PY{n}{answer8}\PY{o}{=}\PY{n}{b}\PY{o}{.}\PY{n}{T}\PY{n+nd}{@b}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 8 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer8}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}9}
+         \PY{n}{answer9}\PY{o}{=}\PY{n}{b}\PY{n+nd}{@b}\PY{o}{.}\PY{n}{T}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 9 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer9}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}10}
+         \PY{n}{answer10}\PY{o}{=}\PY{n}{b}\PY{o}{+}\PY{n}{c}\PY{o}{.}\PY{n}{T}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 10 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer10}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}11}
+         \PY{c+c1}{\PYZsh{}can\PYZsq{}t be computed as b tranpose\PYZsq{}s dimension is 1*3, they can be multiplied together}
+         
+         \PY{c+c1}{\PYZsh{}12}
+         \PY{n}{answer12}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{n+nd}{@b}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 12 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer12}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}13}
+         \PY{n}{answer13}\PY{o}{=}\PY{n}{A}\PY{o}{*}\PY{n}{A}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 13 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer13}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}14}
+         \PY{n}{answer14}\PY{o}{=}\PY{n}{b}\PY{o}{*}\PY{n}{c}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{answer 14 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{answer14}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 3)
+(3, 1)
+(3, 1)
+answer 1 
+ [[14 25 31]
+ [25 45 56]
+ [31 56 70]]
+answer 2 
+ [[14 25 31]
+ [25 45 56]
+ [31 56 70]]
+answer 3 
+ [[29]
+ [50]
+ [60]]
+answer 6 
+ [[29 50 60]]
+answer 8 
+ [[74]]
+answer 9 
+ [[ 1 -3 -8]
+ [-3  9 24]
+ [-8 24 64]]
+answer 10 
+ [[ 3 -4  5]
+ [ 7  0  9]
+ [12  5 14]]
+answer 12 
+ [[ 6.]
+ [ 4.]
+ [-5.]]
+answer 13 
+ [[ 1  4  9]
+ [ 4 16 25]
+ [ 9 25 36]]
+answer 14 
+ [[-4]
+ [-9]
+ [48]]
+
+    \end{Verbatim}
+
+    \subsection{6}\label{section}
+
+\textbf{Eigenvectors and eigenvalues}. Eigenvectors and eigenvalues are
+useful for some machine learning algorithms, but the concepts take time
+to solidly grasp. For an intuitive review of these concepts, explore
+this
+\href{http://setosa.io/ev/eigenvectors-and-eigenvalues/}{interactive
+website at Setosa.io}. Also, the series of linear algebra videos by
+Grant Sanderson of 3Brown1Blue are excellent and can be viewed on
+youtube
+\href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{here}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate the eigenvalues and corresponding eigenvectors of matrix
+  \(\mathbf{A}\) above, from the last question.
+\item
+  Choose one of the eigenvector/eigenvalue pairs, \(\mathbf{v}\) and
+  \(\lambda\), and show that
+  \(\mathbf{A} \mathbf{v} = \lambda \mathbf{v}\). Also show that this
+  relationship extends to higher orders:
+  \(\mathbf{A} \mathbf{A} \mathbf{v} = \lambda^2 \mathbf{v}\)
+\item
+  Show that the eigenvectors are orthogonal to one another (e.g. their
+  inner product is zero). This is true for real, symmetric matrices.
+\end{enumerate}
+
+    \textbf{ANSWER}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}103}]:} \PY{c+c1}{\PYZsh{}1}
+          \PY{n}{eigenval}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eigvals}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eigenvalues are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{eigenval}\PY{p}{)}\PY{p}{)}
+          \PY{n}{eigenvec}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eig}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eigenvector is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{eigenvec}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}2}
+          \PY{n}{eigenvalnew}\PY{o}{=}\PY{n}{eigenval}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{eigenvecnew}\PY{o}{=}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{Av}\PY{o}{=}\PY{n}{A}\PY{n+nd}{@eigenvecnew}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Av is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{Av}\PY{p}{)}\PY{p}{)}
+          \PY{n}{lambdav}\PY{o}{=}\PY{n}{eigenvalnew}\PY{o}{*}\PY{n}{eigenvecnew}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lambda*v is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{lambdav}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}as we observe, Av=lambda*v}
+          
+          \PY{n}{AAv}\PY{o}{=}\PY{n}{A}\PY{n+nd}{@A}\PY{n+nd}{@eigenvecnew}
+          \PY{n}{lambda2v}\PY{o}{=}\PY{n}{eigenvalnew}\PY{o}{*}\PY{n}{eigenvalnew}\PY{o}{*}\PY{n}{eigenvecnew}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AAV is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{AAv}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lambda square v is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{lambda2v}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}as we observe, AAv=lambda\PYZca{}2*v}
+          
+          \PY{c+c1}{\PYZsh{}3}
+          \PY{n}{innerproduct1}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{inner}\PY{p}{(}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{n}{innerproduct2}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{inner}\PY{p}{(}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+          \PY{n}{innerproduct3}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{inner}\PY{p}{(}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{eigenvec}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{innerproducts are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{innerproduct1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}\PY{n+nb}{round}\PY{p}{(}\PY{n}{innerproduct2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}\PY{n+nb}{round}\PY{p}{(}\PY{n}{innerproduct3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}innerproducts are all 0, thus eigenvectors are orthogonal to each other}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+eigenvalues are [11.34481428 -0.51572947  0.17091519]
+eigenvector is [[-0.32798528 -0.73697623  0.59100905]
+ [-0.59100905 -0.32798528 -0.73697623]
+ [-0.73697623  0.59100905  0.32798528]]
+Av is [-3.72093206 -6.70488789 -8.36085845]
+lambda*v is [-3.72093206 -6.70488789 -8.36085845]
+AAV is [-42.2132832  -76.06570795 -94.85238636]
+lambda square v is [-42.2132832  -76.06570795 -94.85238636]
+innerproducts are -0.0 -0.0 -0.0
+
+    \end{Verbatim}
+
+    \section{Numerical Programming}\label{numerical-programming}
+
+    \subsection{7}\label{section}
+
+Speed comparison between vectorized and non-vectorized code. Begin by
+creating an array of 10 million random numbers using the numpy
+random.randn module. Compute the sum of the squares first in a for loop,
+then using Numpy's \texttt{dot} module. Time how long it takes to
+compute each and report the results and report the output. How many
+times faster is the vectorized code than the for loop approach?
+
+*Note: all code should be well commented, properly formatted, and your
+answers should be output using the \texttt{print()} function as follows
+(where the \# represents your answers, to a reasonable precision):
+
+\texttt{Time\ {[}sec{]}\ (non-vectorized):\ \#\#\#\#\#\#}
+
+\texttt{Time\ {[}sec{]}\ (vectorized):\ \ \ \ \ \#\#\#\#\#\#}
+
+\texttt{The\ vectorized\ code\ is\ \#\#\#\#\#\ times\ faster\ than\ the\ vectorized\ code}
+
+    \textbf{ANSWER}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}188}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{time}
+          
+          \PY{c+c1}{\PYZsh{} Generate the random samples}
+          \PY{n}{sample}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10000000}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} Compute the sum of squares the non\PYZhy{}vectorized way (using a for loop)}
+          \PY{n}{start1}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{result1}\PY{o}{=}\PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{each} \PY{o+ow}{in} \PY{n}{sample}\PY{p}{:}
+              \PY{n}{result1}\PY{o}{=}\PY{n}{result1}\PY{o}{+}\PY{n}{each}\PY{o}{*}\PY{n}{each}
+          \PY{n}{end1}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{elapsed1}\PY{o}{=}\PY{n}{end1}\PY{o}{\PYZhy{}}\PY{n}{start1}
+          \PY{c+c1}{\PYZsh{} Compute the sum of squares the vectorized way (using numpy)}
+          \PY{n}{start2}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{result2}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{sample}\PY{p}{)}\PY{p}{)}
+          \PY{n}{end2}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{elapsed2}\PY{o}{=}\PY{n}{end2}\PY{o}{\PYZhy{}}\PY{n}{start2}
+          \PY{c+c1}{\PYZsh{} Print the results}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time [sec] (non\PYZhy{}vectorized):}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{elapsed1}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time [sec] (vectorized):}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{elapsed2}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff}\PY{o}{=}\PY{n}{elapsed1}\PY{o}{/}\PY{n}{elapsed2}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The vectorized code is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ times faster than the non\PYZhy{}vectorized code}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{diff}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Time [sec] (non-vectorized):2.1382639999999924
+Time [sec] (vectorized):0.16973000000000127
+The vectorized code is 12.598032168738445 times faster than the non-vectorized code
+
+    \end{Verbatim}
+
+    \subsection{8}\label{section}
+
+One popular Agile development framework is Scrum (a paradigm recommended
+for data science projects). It emphasizes the continual evolution of
+code for projects, becoming progressively better, but starting with a
+quickly developed minimum viable product. This often means that code
+written early on is not optimized, and that's a good thing - it's best
+to get it to work first before optimizing. Imagine that you wrote the
+following code during a sprint towards getting an end-to-end system
+working. Vectorize the following code and show the difference in speed
+between the current implementation and a vectorized version.
+
+The function below computes the function \(f(x,y) = x^2 - 2 y^2\) and
+determines whether this quantity is above or below a given threshold,
+\texttt{thresh=0}. This is done for \(x,y \in \{-4,4\}\), over a
+2,000-by-2,000 grid covering that domain.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Vectorize this code and demonstrate (as in the last exercise) the
+  speed increase through vectorization and (b) plot the resulting data -
+  both the function \(f(x,y)\) and the thresholded output - using
+  \href{https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html?highlight=matplotlib\%20pyplot\%20imshow\#matplotlib.pyplot.imshow}{\texttt{imshow}}
+  from \texttt{matplotlib}.
+\end{enumerate}
+
+\emph{Hint: look at the \texttt{numpy}
+\href{https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.meshgrid.html}{\texttt{meshgrid}}
+documentation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}185}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{time}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          
+          \PY{c+c1}{\PYZsh{} Initialize variables for this exerise}
+          \PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}
+          \PY{n}{y}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Nonvectorized implementation}
+          \PY{n}{start1}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{results}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2000}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{)}
+          \PY{n}{products}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2000}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{product}\PY{o}{=}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                  \PY{k}{if} \PY{n}{product}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}\PY{p}{:}
+                      \PY{n}{results}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{k+kc}{True}
+                      \PY{n}{products}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{product}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{results}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{k+kc}{False}
+                      \PY{n}{products}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{product}
+          \PY{n}{end1}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{elapsed1}\PY{o}{=}\PY{n}{end1}\PY{o}{\PYZhy{}}\PY{n}{start1}
+          
+          \PY{c+c1}{\PYZsh{} Vectorized implementation}
+          \PY{n}{start2}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{xx}\PY{p}{,}\PY{n}{yy}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+          \PY{n}{products2}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{xx}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{yy}\PY{p}{)}
+          \PY{n}{results2}\PY{o}{=}\PY{n}{products2}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}
+          \PY{n}{end2}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+          \PY{n}{elapsed2}\PY{o}{=}\PY{n}{end2}\PY{o}{\PYZhy{}}\PY{n}{start2}
+          
+          \PY{c+c1}{\PYZsh{} Print the time for each and the speed increase}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time [sec] (non\PYZhy{}vectorized):}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{elapsed1}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time [sec] (vectorized):}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{elapsed2}\PY{p}{)}\PY{p}{)}
+          \PY{n}{diff}\PY{o}{=}\PY{n}{elapsed1}\PY{o}{/}\PY{n}{elapsed2}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The vectorized code is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ times faster than the non\PYZhy{}vectorized code}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{diff}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Time [sec] (non-vectorized):5.2209900000000005
+Time [sec] (vectorized):0.24316799999999716
+The vectorized code is 21.47071160679062 times faster than the non-vectorized code
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}186}]:} \PY{c+c1}{\PYZsh{} Plot the result}
+          \PY{n}{fig}\PY{p}{,} \PY{n}{axarr} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Plots of Results}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+          
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{products}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Function Result (non\PYZhy{}vec)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{results}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Threshold Result (non\PYZhy{}vec)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{products2}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Function Result (vec)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{results2}\PY{p}{)}
+          \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Threshold Result (vec)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}186}]:} Text(0.5,1,'Threshold Result (vec)')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{9}\label{section}
+
+This exercise will walk through some basic numerical programming
+exercises. 1. Synthesize \(n=10^4\) normally distributed data points
+with mean \(\mu=2\) and a standard deviation of \(\sigma=1\). Call these
+observations from a random variable \(X\), and call the vector of
+observations that you generate, \(\textbf{x}\). 2. Calculate the mean
+and standard deviation of \(\textbf{x}\) to validate (1) and provide the
+result to a precision of four significant figures. 3. Plot a histogram
+of the data in \(\textbf{x}\) with 30 bins 4. What is the 90th
+percentile of \(\textbf{x}\)? The 90th percentile is the value below
+which 90\% of observations can be found. 5. What is the 99th percentile
+of \(\textbf{x}\)? 6. Now synthesize \(n=10^4\) normally distributed
+data points with mean \(\mu=0\) and a standard deviation of
+\(\sigma=3\). Call these observations from a random variable \(Y\), and
+call the vector of observations that you generate, \(\textbf{y}\). 7.
+Plot the histogram of the data in \(\textbf{y}\) on a (new) plot with
+the histogram of \(\textbf{x}\), so that both histograms can be seen and
+compared. 8. Using the observations from \(\textbf{x}\) and
+\(\textbf{y}\), estimate \(E[XY]\)
+
+    \textbf{ANSWER}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}206}]:} \PY{c+c1}{\PYZsh{} 1}
+          \PY{n}{mu}\PY{p}{,}\PY{n}{sigma}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}
+          \PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{normal}\PY{p}{(}\PY{n}{mu}\PY{p}{,}\PY{n}{sigma}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} 2}
+          \PY{n}{mean}\PY{o}{=}\PY{n}{x}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+          \PY{n}{sd}\PY{o}{=}\PY{n}{x}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean of x is }\PY{l+s+si}{\PYZob{}:.4G\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{mean}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standard Deviation of x is }\PY{l+s+si}{\PYZob{}:.4G\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{sd}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} 3}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histogram of x with 30 bins}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} 4}
+          \PY{n}{percentile90}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{90}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{90 percentile in x is }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentile90}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} 5}
+          \PY{n}{percentile99}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{99}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{99 percentile in x is }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{percentile99}\PY{p}{)}\PY{p}{)}
+          
+          
+          \PY{c+c1}{\PYZsh{} 6}
+          \PY{n}{muy}\PY{p}{,}\PY{n}{sigmay}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{3}
+          \PY{n}{y}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{normal}\PY{p}{(}\PY{n}{muy}\PY{p}{,}\PY{n}{sigmay}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} 7}
+          \PY{n}{fignew}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax1}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Histogram of x and y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+          \PY{c+c1}{\PYZsh{} 8}
+          \PY{n}{expectation}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{E[XY] is }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{expectation}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[3.26708944 0.94274575 0.67640309 {\ldots} 2.08970604 0.61739245 2.18430829]
+Mean of x is 2.001
+Standard Deviation of x is 1.008
+90 percentile in x is 3.29
+99 percentile in x is 4.32
+[ 2.75991201 -1.809132    2.60463482 {\ldots} -0.67717308 -2.32114893
+  0.96454609]
+E[XY] is -0.04
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{10}\label{section}
+
+Estimate the integral of the function \(f(x)\) on the interval
+\(0\leq x < 2.5\) assuming we only know the following points from \(f\):
+
+\emph{Table 1. Dataset containing n=5 observations}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+\(x_i\) & 0.0 & 0.5 & 1.0 & 1.5 & 2.0\tabularnewline
+\midrule
+\endhead
+\(y_i\) & 6 & 7 & 8 & 4 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \textbf{ANSWER}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}207}]:} \PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{,}\PY{l+m+mf}{1.5}\PY{p}{,}\PY{l+m+mf}{2.0}\PY{p}{]}\PY{p}{)}
+          \PY{n}{y}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}using left riemann sum}
+          \PY{n}{area}\PY{o}{=}\PY{l+m+mi}{6}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{o}{+}\PY{l+m+mi}{7}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{o}{+}\PY{l+m+mi}{8}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{o}{+}\PY{l+m+mi}{4}\PY{o}{*}\PY{l+m+mf}{0.5}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Integral estimation is }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{area}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Integral estimation is 12.50
+
+    \end{Verbatim}
+
+    \section{Version Control via Git}\label{version-control-via-git}
+
+    \subsection{11}\label{section}
+
+Complete the
+\href{https://www.atlassian.com/git/tutorials/what-is-version-control}{Atlassian
+Git tutorial}, specifically the following sections. Try each concept
+that's presented. For this tutorial, instead of using BitBucket, use
+Github. Create a github account here if you don't already have one:
+https://github.com/ 1.
+\href{https://www.atlassian.com/git/tutorials/what-is-version-control}{What
+is version control} 2.
+\href{https://www.atlassian.com/git/tutorials/what-is-git}{What is Git}
+3. \href{https://www.atlassian.com/git/tutorials/install-git}{Install
+Git} 4.
+\href{https://www.atlassian.com/git/tutorials/install-git}{Setting up a
+repository} 5.
+\href{https://www.atlassian.com/git/tutorials/saving-changes}{Saving
+changes} 6.
+\href{https://www.atlassian.com/git/tutorials/inspecting-a-repository}{Inspecting
+a repository} 7.
+\href{https://www.atlassian.com/git/tutorials/undoing-changes}{Undoing
+changes} 8.
+\href{https://www.atlassian.com/git/tutorials/rewriting-history}{Rewriting
+history} 9.
+\href{https://www.atlassian.com/git/tutorials/syncing}{Syncing} 10.
+\href{https://www.atlassian.com/git/tutorials/making-a-pull-request}{Making
+a pull request} 11.
+\href{https://www.atlassian.com/git/tutorials/using-branches}{Using
+branches} 12.
+\href{https://www.atlassian.com/git/tutorials/comparing-workflows}{Comparing
+workflows}
+
+For your answer, affirm that you either completed the tutorial or have
+previous experience with all of the concepts above. Do this by typing
+your name below and selecting the situation that applies from the two
+options in brackets.
+
+    \textbf{ANSWER}
+
+\emph{I, {[}\textbf{Emma Sun}{]}, affirm that I have {[}\textbf{I have
+previous experience that covers all the content in this tutorial}{]}}
+
+    \subsection{12}\label{section}
+
+Using Github to create a static HTML website: 1. Create a branch in your
+\texttt{machine-learning-course} repo called "gh-pages" and checkout
+that branch (this will provide an example of how to create a simple
+static website using \href{https://pages.github.com/}{Github Pages}) 2.
+Create a file called "index.html" with the contents "Hello World" and
+add, commit, and push it to that branch. 3. Submit the following: (a) a
+link to your github repository and (b) a link to your new "Hello World"
+website. The latter should be at the address
+https://{[}USERNAME{]}.github.io/ECE590-assignment0 (where
+{[}USERNAME{]} is your github username).
+
+    \textbf{ANSWER}
+
+    a)github repo: https://github.com/xuecongsun b)html website:
+https://xuecongsun.github.io/machine-learning-course
+
+    \section{Exploratory Data Analysis}\label{exploratory-data-analysis}
+
+\subsection{13}\label{section}
+
+Here you'll bring together some of the individual skills that you
+demonstrated above and create a Jupyter notebook based blog post on data
+analysis.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find a dataset that interests you and relates to a question or problem
+  that you find intriguing
+\item
+  Using a Jupyter notebook, describe the dataset, the source of the
+  data, and the reason the dataset was of interest.
+\item
+  Check the data and see if they need to be cleaned: are there missing
+  values? Are there clearly erroneous values? Do two tables need to be
+  merged together? Clean the data so it can be visualized.
+\item
+  Plot the data, demonstrating interesting features that you discover.
+  Are there any relationships between variables that were surprising or
+  patterns that emerged? Please exercise creativity and curiosity in
+  your plots.
+\item
+  What insights are you able to take away from exploring the data? Is
+  there a reason why analyzing the dataset you chose is particularly
+  interesting or important? Summarize this as if your target audience
+  was the readership of a major news organization - boil down your
+  findings in a way that is accessible, but still accurate.
+\item
+  Create a public repository on your github account titled
+  "machine-learning-course". In it, create a readme file that contains
+  the heading "ECE590: Introductory Machine Learning for Data Science".
+  Add, commit, and push that Jupyter notebook to the master branch.
+  Provide the link to the that post here.
+\end{enumerate}
+
+    \textbf{ANSWER}
+
+    https://github.com/xuecongsun/machine-learning-course
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
